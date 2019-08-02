@@ -15,25 +15,21 @@ public class EyeBinky : MonoBehaviour
         lefteyeOpen = lefteye.activeSelf;
         righteyeOpen = righteye.activeSelf;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if(Input.GetButtonDown("LeftEye"))
         {
-            //Debug.Log("fackin lefteye");
             lefteye.SetActive(!lefteyeOpen);
             lefteyeOpen = !lefteyeOpen;
         }
         else if (Input.GetButtonDown("RightEye"))
         {
-            //Debug.Log("fackin righteye");
             righteye.SetActive(!righteyeOpen);
             righteyeOpen = !righteyeOpen;
         }
-
         
-        if(!lefteyeOpen && !righteyeOpen)//both eyes are "open"
+        if(!lefteyeOpen && !righteyeOpen)//both eyes are "open" but no camera wb rendering
         {
             openeyes.SetActive(true);
         }
@@ -41,6 +37,5 @@ public class EyeBinky : MonoBehaviour
         {
             openeyes.SetActive(false);
         }
-
     }
 }
