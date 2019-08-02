@@ -228,7 +228,6 @@ GameObject:
   m_Component:
   - component: {fileID: 290896318}
   - component: {fileID: 290896317}
-  - component: {fileID: 290896316}
   m_Layer: 0
   m_Name: OpenEyes
   m_TagString: Untagged
@@ -236,14 +235,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!81 &290896316
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290896315}
-  m_Enabled: 1
 --- !u!20 &290896317
 Camera:
   m_ObjectHideFlags: 0
@@ -911,7 +902,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1818220159}
   - component: {fileID: 1818220158}
-  - component: {fileID: 1818220157}
   m_Layer: 0
   m_Name: RightEye
   m_TagString: MainCamera
@@ -919,14 +909,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1818220157
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818220156}
-  m_Enabled: 1
 --- !u!20 &1818220158
 Camera:
   m_ObjectHideFlags: 0
