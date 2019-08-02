@@ -15,6 +15,18 @@ public class EyeBinky : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Debug.Log("fackin fired1");
+            Camera le = lefteye.GetComponent<Camera>();
+            le.enabled = false;
+        }
+        else if (Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("fackin fired2");
+            Camera le = righteye.GetComponent<Camera>();
+            le.enabled = false;
+        }
+
     }
 }
