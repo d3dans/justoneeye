@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PickUpRotate : MonoBehaviour
 {
+    //object has to be tagged with Pickupable to work
+    //sometimes makes player v tall
     GameObject item;
     public Transform guide;
     
