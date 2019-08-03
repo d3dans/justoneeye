@@ -13,7 +13,6 @@ public class PickUpRotate : MonoBehaviour
     {
        if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("mother fakin left mouse button bitch");
             OnMouseDown();
         }
        else if (Input.GetMouseButtonUp(0))
@@ -25,12 +24,11 @@ public class PickUpRotate : MonoBehaviour
     private void OnMouseDown()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
-        Debug.Log("mouse down");
+        
         for (int i = 0; i < hitColliders.Length; i++)
         {
             if (hitColliders[i].tag == "Pickupable")
             {
-                Debug.Log("hit pickup");
                 item = hitColliders[i].gameObject;
                 item.GetComponent<Rigidbody>().useGravity = false;
                 item.GetComponent<Rigidbody>().isKinematic = true;
