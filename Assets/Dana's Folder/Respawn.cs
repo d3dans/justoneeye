@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    public Transform respawnpoint;
+    public Transform respawnpoint; //set on start to a starting respawn position
     
     public void RespawnPlayer()
     {
         //yeet player
+        transform.position = respawnpoint.position;        
     }
 }
