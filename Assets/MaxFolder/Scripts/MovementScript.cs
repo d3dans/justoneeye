@@ -25,7 +25,7 @@ public class MovementScript : MonoBehaviour
     protected bool _isCrouching = false;
     protected bool _isSprinting = false;
     protected bool _isJumping = false;
-    protected bool _isGrounded = false;
+    [SerializeField]protected bool _isGrounded = false;
     protected Vector3 _groundContactNormal;
     protected float _forwardVelocity = 0.0f;
     protected float _strafeVelocity = 0.0f;
@@ -42,7 +42,6 @@ public class MovementScript : MonoBehaviour
 
         //Get Rigidbody component
         _rb = gameObject.GetComponent<Rigidbody>();
-        _rb.useGravity = false;
 
         //Grab the main collider of the object (intended to be a CapsuleCollider possibly on a child object) and use it's height as the player's height (used in crouching)
         _col = gameObject.GetComponentInChildren<CapsuleCollider>();
@@ -69,7 +68,6 @@ public class MovementScript : MonoBehaviour
     //Make the player jump
     public virtual void Jump(bool value)
     {
-        Debug.Log("Space: " + value);
         if (value && letJump && _isGrounded)
         {
             _isJumping = true;
@@ -120,15 +118,19 @@ public class MovementScript : MonoBehaviour
             localMaxSpeed *= crouchMultiplier;
         }
 
+        float yVel = _rb.velocity.y;
         _rb.velocity *= 0.5f;
 
         //Apply x/y plane velocity
         //First, clamp it so you can't excede maxSpeed
         if((_rb.velocity + desiredVelocity).sqrMagnitude > localMaxSpeed * localMaxSpeed)
         {
-            desiredVelocity = (desiredVelocity.normalized * localMaxSpeed) - _rb.velocity;
+            desiredVelocity = desiredVelocity.normalized * localMaxSpeed;
         }
-        _rb.AddForce(desiredVelocity);
+        else
+        {
+            desiredVelocity += _rb.velocity;
+        }
 
         if (_isJumping)
         {
@@ -136,6 +138,12 @@ public class MovementScript : MonoBehaviour
             _isJumping = false;
             _isGrounded = false;
         }
+        else
+        {
+            desiredVelocity.y = yVel;
+        }
+
+        _rb.velocity = desiredVelocity;
     }
 
     //Crouches the player when held
