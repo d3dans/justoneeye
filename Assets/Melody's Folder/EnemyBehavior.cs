@@ -16,13 +16,25 @@ public class EnemyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool test = PlayerInSensingRange();
+       
+
+        if (PlayerInSensingRange())
+        {
+            DashAtPlayer();
+        }
+        else
+        {
+            if(IsDemonEyeOpen())
+            {
+
+            }
+        }
         /*if(EyeIsOpenOpen())
         {
             //isplayerinattackingrange...
@@ -63,6 +75,17 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
+    private void DashAtPlayer()
+    {
+
+        float step = 1 * Time.deltaTime; // calculate distance to move
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+    }
+
+    private bool IsDemonEyeOpen()
+    {
+        return false;
+    }
 }
 
 
