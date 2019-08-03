@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EyeBinky : MonoBehaviour
 {
+    //these are named wrong i am sorry
+
     public GameObject lefteye;
     public GameObject righteye;
     public GameObject openeyes;
@@ -18,12 +20,12 @@ public class EyeBinky : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetButtonDown("LeftEye"))
+        if(Input.GetButtonDown("RightEye"))
         {
             lefteye.SetActive(!lefteyeOpen);
             lefteyeOpen = !lefteyeOpen;
         }
-        else if (Input.GetButtonDown("RightEye"))
+        else if (Input.GetButtonDown("LeftEye"))
         {
             righteye.SetActive(!righteyeOpen);
             righteyeOpen = !righteyeOpen;

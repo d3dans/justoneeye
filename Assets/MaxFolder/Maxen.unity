@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: adeacd19b2eb5854aaa2b6b9b64cce10,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -120,19 +121,13 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &145275047 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2406018017235442218, guid: c971fe79afea9e14ba5d9db11ca39014,
-    type: 3}
-  m_PrefabInstance: {fileID: 830664840}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &145275048 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6813861510829554852, guid: c971fe79afea9e14ba5d9db11ca39014,
     type: 3}
   m_PrefabInstance: {fileID: 830664840}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145275047}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3863538a074bd9b43b1698f8945fb4a9, type: 3}
@@ -459,14 +454,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6879487326349608779, guid: c971fe79afea9e14ba5d9db11ca39014,
+    - target: {fileID: 2505860550976995140, guid: c971fe79afea9e14ba5d9db11ca39014,
         type: 3}
-      propertyPath: characterBody
-      value: 
-      objectReference: {fileID: 145275047}
+      propertyPath: crouchRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 290896317, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 420207125, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 524906168, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818220158, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2106984482, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
       propertyPath: m_LocalPosition.z
