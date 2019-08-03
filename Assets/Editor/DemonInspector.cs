@@ -7,7 +7,7 @@ using UnityEditor;
 public class DemonInspector : Editor
 {
     Demon demon;
-
+    
 
     void OnEnable()
     {

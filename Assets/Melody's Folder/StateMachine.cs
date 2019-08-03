@@ -6,8 +6,8 @@ public class StateMachine : MonoBehaviour
 {
     private IEnumerable state;
     private GameObject player;
-    public Vector3? lastKnownPosition = null;
-    public float sensingRange = 5.0f;
+    public string strStateDebug;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +73,6 @@ public class StateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("position reached: " + isPositionReached(Vector3.zero));
+        strStateDebug = state.ToString();
     }
 }
