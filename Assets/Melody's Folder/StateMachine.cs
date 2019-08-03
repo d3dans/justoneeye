@@ -6,7 +6,8 @@ public class StateMachine : MonoBehaviour
 {
     private IEnumerable state;
     private GameObject player;
-    public Vector3 lastKnownPosition = Vector3.zero;
+    public Vector3? lastKnownPosition = null;
+    public float sensingRange = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
