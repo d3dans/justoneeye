@@ -6,9 +6,9 @@ public class EnemyBehavior : MonoBehaviour
 {
 
     private Vector3? lastKnownPosition = null;
-     
-    //variables for finding player
 
+    //variables for finding player
+    GameObject player;
 
 
 
@@ -27,11 +27,22 @@ public class EnemyBehavior : MonoBehaviour
         }
         else
         {
+            //isplayerInSensing Range
+            
+            
+            
             //isLastKnownExists
         }
     }
     private bool EyeIsOpenOpen()
     {
+        return false;
+        //get player left eye open
+    }
+
+    private bool PlayerInSensingRange()
+    {
+
         return false;
     }
 
