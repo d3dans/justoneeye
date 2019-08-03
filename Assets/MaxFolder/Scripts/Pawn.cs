@@ -6,6 +6,7 @@ public class Pawn : MonoBehaviour
 {
     public LookScript myLookScript;
     public MovementScript myMoveScript;
+    public PickUpRotate PandR;
     
     public void PassMovementHorizontal(float value)
     {
@@ -30,7 +31,7 @@ public class Pawn : MonoBehaviour
 
     public void PassLook(Vector2 value)
     {
-        if(myLookScript)
+        if(myLookScript && PandR.isRotatingObject == false)
         {
             myLookScript.MouseInput = value;
         }
