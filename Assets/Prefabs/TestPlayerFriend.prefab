@@ -677,6 +677,7 @@ GameObject:
   - component: {fileID: 2505860550976995140}
   - component: {fileID: 6813861510829554852}
   - component: {fileID: 1514889103}
+  - component: {fileID: 1404316185003204141}
   m_Layer: 0
   m_Name: TestPlayerFriend
   m_TagString: Player
@@ -771,9 +772,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13df9b88177c9e40a2e09a3ed613241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lefteye: {fileID: 0}
-  righteye: {fileID: 0}
-  openeyes: {fileID: 0}
+  lefteye: {fileID: 420207123}
+  righteye: {fileID: 1818220156}
+  openeyes: {fileID: 290896315}
   lefteyeOpen: 0
   righteyeOpen: 0
 --- !u!54 &1714001884840169783
@@ -841,6 +842,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1404316185003204141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2406018017235442218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c71ad0b13a2e2438e62649ee3a1a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnpoint: {fileID: 0}
 --- !u!1 &3679853482357942369
 GameObject:
   m_ObjectHideFlags: 0
