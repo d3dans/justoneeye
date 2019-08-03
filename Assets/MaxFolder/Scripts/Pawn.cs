@@ -36,4 +36,12 @@ public class Pawn : MonoBehaviour
             myLookScript.MouseInput = value;
         }
     }
+
+    public void ToggleCursorLock()
+    {
+        if(myLookScript)
+        {
+            myLookScript.lockState = !myLookScript.lockState;
+        }
+    }
 }

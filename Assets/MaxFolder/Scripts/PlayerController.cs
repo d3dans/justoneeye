@@ -20,5 +20,10 @@ public class PlayerController : MonoBehaviour
         ControlledPawn?.PassCrouch(Input.GetButton("Crouch"));
 
         ControlledPawn?.PassLook(new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
+
+        if(Input.GetButtonDown("Cancel"))
+        {
+            ControlledPawn?.ToggleCursorLock();
+        }
     }
 }
