@@ -7,8 +7,8 @@ public class EyeBinky : MonoBehaviour
     public GameObject lefteye;
     public GameObject righteye;
     public GameObject openeyes;
-    bool lefteyeOpen;
-    bool righteyeOpen;
+    public bool lefteyeOpen;
+    public bool righteyeOpen;
 
     void Start()
     {
