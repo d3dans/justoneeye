@@ -27,11 +27,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290896315}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5555556}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0.5555556}
   m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1.1111112}
   m_Children: []
-  m_Father: {fileID: 2406018017235442230}
-  m_RootOrder: 1
+  m_Father: {fileID: 2104772840864717245}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &290896317
 Camera:
@@ -179,12 +179,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420207123}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5555556}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0.5555556}
   m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1.1111112}
   m_Children:
   - {fileID: 524906168}
-  m_Father: {fileID: 2406018017235442230}
-  m_RootOrder: 2
+  m_Father: {fileID: 2104772840864717245}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &420207125
 Camera:
@@ -511,12 +511,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818220156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5555556}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0.5555556}
   m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1.1111112}
   m_Children:
   - {fileID: 2106984482}
-  m_Father: {fileID: 2406018017235442230}
-  m_RootOrder: 3
+  m_Father: {fileID: 2104772840864717245}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1818220158
 Camera:
@@ -695,9 +695,6 @@ Transform:
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children:
   - {fileID: 2104772840864717245}
-  - {fileID: 290896318}
-  - {fileID: 420207126}
-  - {fileID: 1818220159}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -792,7 +789,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2505860550976995140
 MonoBehaviour:
@@ -809,8 +806,8 @@ MonoBehaviour:
   letSprint: 1
   letJump: 1
   letCrouch: 1
-  moveSpeed: 1
-  maxSpeed: 5
+  moveSpeed: 5
+  maxSpeed: 10
   sprintMultiplier: 1.2
   crouchMultiplier: 0.7
   jumpForce: 5
@@ -828,6 +825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3863538a074bd9b43b1698f8945fb4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myLookScript: {fileID: 6879487326349608779}
+  myMoveScript: {fileID: 2505860550976995140}
 --- !u!1 &3679853482357942369
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +854,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 290896318}
+  - {fileID: 420207126}
+  - {fileID: 1818220159}
   m_Father: {fileID: 2406018017235442230}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
