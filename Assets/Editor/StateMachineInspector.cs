@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -28,6 +28,6 @@ public class StateMachineInspector : Editor
             
         }
         stateMachine.sensingRange = Handles.RadiusHandle(Quaternion.identity, stateMachine.transform.position, stateMachine.sensingRange);
-    */
+    
     }
-}
+}*/

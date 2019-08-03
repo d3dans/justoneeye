@@ -7,14 +7,16 @@ public class StateMachine : MonoBehaviour
     private IEnumerable state;
     private GameObject player;
     public string strStateDebug;
+    private Demon demon;
     
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        state = DebugLogState("Hello");
+        demon = gameObject.GetComponent<Demon>();
+        state = WalkTowardsLastKnownPosition();
         //Debug.Log("Starting state machine");
-        //StartCoroutine(RunStateMachine());
+        StartCoroutine(RunStateMachine());
     }
 
     public IEnumerator RunStateMachine()
@@ -36,15 +38,21 @@ public class StateMachine : MonoBehaviour
         bool positionReached = false;
         bool playerSensed = false;
         bool demonEyeOpened = false;
+        Debug.Log("Entering While loop");
         while (!positionReached && !playerSensed && !demonEyeOpened)
         {
+            Debug.Log("In WalkTowardsLastKnownPosition Loop");
             //until reached
+            if(demon.isTargetPositionReached(demon.lastKnownPosition))
+            {
+                state = DebugLogState("target position reached");
+            }
 
-            //or sense player
             yield return null;
-
-
+            // && !demon.isPlayerSensed() && !demonEyeOpened
+            //or sense player
         }
+        Debug.Log("You fucked up");
     }
     private IEnumerable DebugLogState(string message)
     {
@@ -58,14 +66,9 @@ public class StateMachine : MonoBehaviour
     }
     #endregion
     #region Scenario Checks
-    private bool isPositionReached(Vector3 p)
-    {
-        if (Vector3.Distance(p, transform.position) < 0.01)
-        {
-            return true;
-        }
-        return false;
-    }
+    
+
+  
     #endregion
 
 

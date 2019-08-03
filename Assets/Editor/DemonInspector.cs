@@ -19,17 +19,19 @@ public class DemonInspector : Editor
         DrawDefaultInspector();
     }
 
-    private void OnSceneGUI()
+    public void OnSceneGUI()
     {
 
         //  if (demon.lastKnownPosition != null)
         //{
-        //Handles.PositionHandle(stateMachine.lastKnownPosition, Quaternion.identity);
+        //demon.transform.position = Handles.PositionHandle(demon.transform.position, Quaternion.identity);
 
         //}
         Handles.color = Color.yellow;
         demon.sensingRange = Handles.RadiusHandle(Quaternion.identity, demon.transform.position, demon.sensingRange);
         Handles.color = Color.red;
         demon.attackingRange = Handles.RadiusHandle(Quaternion.identity, demon.transform.position, demon.attackingRange);
+        Handles.color = Color.blue;
+        demon.targetPositionRadius = Handles.RadiusHandle(Quaternion.identity, demon.lastKnownPosition, demon.targetPositionRadius);
     }
 }
