@@ -693,7 +693,7 @@ Transform:
   m_GameObject: {fileID: 2406018017235442218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.47, y: 1, z: -0.659}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2104772840864717245}
   - {fileID: 290896318}
@@ -829,6 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3863538a074bd9b43b1698f8945fb4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myLookScript: {fileID: 0}
+  myMoveScript: {fileID: 0}
 --- !u!135 &1514889103
 SphereCollider:
   m_ObjectHideFlags: 0
