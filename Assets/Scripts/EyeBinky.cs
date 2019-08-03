@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EyeBinky : MonoBehaviour
 {
+    //these are named wrong i am sorry
+
     public GameObject lefteye;
     public GameObject righteye;
     public GameObject openeyes;
