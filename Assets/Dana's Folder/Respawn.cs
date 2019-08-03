@@ -7,7 +7,7 @@ public class Respawn : MonoBehaviour
     public Transform respawnpoint; //set on start to a starting respawn position
     public float health = 100f;
 
-    //TEST CODE
+    /********TEST CODE******/
     private void Update()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
@@ -20,6 +20,7 @@ public class Respawn : MonoBehaviour
             }
         }
     }
+    /***********************/
 
     public void TakeDamage(float damage)
     {
