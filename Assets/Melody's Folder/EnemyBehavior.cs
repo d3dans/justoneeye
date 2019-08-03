@@ -6,7 +6,8 @@ public class EnemyBehavior : MonoBehaviour
 {
 
     private Vector3? lastKnownPosition = null;
-
+    public float senseingRange = 5.0f;
+    public float attackingRange = 2.5f;
     //variables for finding player
     GameObject player;
 
@@ -21,7 +22,8 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(EyeIsOpenOpen())
+        bool test = PlayerInSensingRange();
+        /*if(EyeIsOpenOpen())
         {
             //isplayerinattackingrange...
         }
@@ -32,7 +34,7 @@ public class EnemyBehavior : MonoBehaviour
             
             
             //isLastKnownExists
-        }
+        }*/
     }
     private bool EyeIsOpenOpen()
     {
@@ -42,10 +44,24 @@ public class EnemyBehavior : MonoBehaviour
 
     private bool PlayerInSensingRange()
     {
-
+        Collider[] hits = Physics.OverlapSphere(transform.position, senseingRange);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].gameObject.tag == "Player")
+            {        
+                return true;
+            }
+        }
         return false;
     }
 
+    private Vector3 getPlayerPosition()
+    {
+        Vector3 p = Vector3.zero;
+        return p;
+
+
+    }
 
 }
 
