@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class Pawn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public LookScript myLookScript;
+    public MovementScript myMoveScript;
+    
+    public void PassMovementHorizontal(float value)
     {
-        
+        myMoveScript?.MoveHorizontal(value);
+    }
+    public void PassMovementVertical(float value)
+    {
+        myMoveScript?.MoveVertical(value);
+    }
+    public void PassJump(bool value)
+    {
+        myMoveScript?.Jump(value);
+    }
+    public void PassSprint(bool value)
+    {
+        myMoveScript?.Sprint(value);
+    }
+    public void PassCrouch(bool value)
+    {
+        myMoveScript?.Crouch(value);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PassLook(Vector2 value)
     {
-        
+        if(myLookScript)
+        {
+            myLookScript.MouseInput = value;
+        }
     }
 }
