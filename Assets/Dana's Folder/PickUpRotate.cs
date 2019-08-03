@@ -9,7 +9,7 @@ public class PickUpRotate : MonoBehaviour
     GameObject item;
     public Transform guide;
     public bool isRotatingObject;
-    float rotationSpeed = 1000.0f;
+    float rotationSpeed = 50.0f;
     
     void Update()
     {
@@ -24,7 +24,7 @@ public class PickUpRotate : MonoBehaviour
 
         if (item != null)
         {
-            if (Input.GetButtonDown("RotateObject"))
+            if (Input.GetButton("RotateObject"))
             {
                 isRotatingObject = true;
                 Debug.Log("trying to rotate");
