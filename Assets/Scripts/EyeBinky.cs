@@ -9,6 +9,7 @@ public class EyeBinky : MonoBehaviour
     public GameObject lefteye;
     public GameObject righteye;
     public GameObject openeyes;
+    public GameObject closedeyes;
     public bool lefteyeOpen;
     public bool righteyeOpen;
 
@@ -37,6 +38,14 @@ public class EyeBinky : MonoBehaviour
         }
         else
         {
+            if (lefteyeOpen && righteyeOpen)//both eyes are shut
+            {
+                closedeyes.SetActive(true);
+            }
+            else
+            {
+                closedeyes.SetActive(false);
+            }
             openeyes.SetActive(false);
         }
     }
