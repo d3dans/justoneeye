@@ -120,6 +120,8 @@ public class MovementScript : MonoBehaviour
             localMaxSpeed *= crouchMultiplier;
         }
 
+        _rb.velocity *= 0.5f;
+
         //Apply x/y plane velocity
         //First, clamp it so you can't excede maxSpeed
         if((_rb.velocity + desiredVelocity).sqrMagnitude > localMaxSpeed * localMaxSpeed)
