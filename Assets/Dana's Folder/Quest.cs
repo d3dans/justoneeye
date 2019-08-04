@@ -13,6 +13,8 @@ public class Quest : MonoBehaviour
     public GameObject Demon;
     Transform trapPos;
     public GameObject CameraPivot;
+    public GameObject MenuCanvas;
+
     public GameObject escape0;
     public GameObject escape1;
     public GameObject escape2;
@@ -59,6 +61,11 @@ public class Quest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetButtonDown("TabMenu"))
+        {
+            MenuCanvas.SetActive(!MenuCanvas.activeSelf);
+        }
+
         if (Physics.Raycast(CameraPivot.transform.position, CameraPivot.transform.forward, out hit, 2))
         {
             if (hit.collider.gameObject.GetComponent<QuestItem>())
