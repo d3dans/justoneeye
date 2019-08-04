@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596066932449392409490fe5c87df8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questitemName: Body
+  questitemName: Eye
 --- !u!1 &5407343575506477923
 GameObject:
   m_ObjectHideFlags: 0

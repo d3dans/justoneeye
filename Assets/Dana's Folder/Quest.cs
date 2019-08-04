@@ -211,7 +211,7 @@ public class Quest : MonoBehaviour
                 }
                 else if(questItemName == "Eye")
                 {
-                    eyes += 1;
+                    eyes += 2;
                     eyestext.GetComponent<Text>().text = "Eyes " + eyes + "/5";
                     if(eyes == 5)
                     {
