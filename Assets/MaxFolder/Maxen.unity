@@ -469,7 +469,7 @@ PrefabInstance:
     - target: {fileID: 5743499565029233151, guid: f2e99536c9eb94d419c1b2c0e9629b37,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5743499565029233151, guid: f2e99536c9eb94d419c1b2c0e9629b37,
         type: 3}
@@ -565,14 +565,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290896319, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
-      propertyPath: m_ShowCustomSorter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 290896319, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
-      propertyPath: m_ShowToolkit
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 524906168, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -584,6 +576,18 @@ PrefabInstance:
     - target: {fileID: 5229186479693370802, guid: c971fe79afea9e14ba5d9db11ca39014,
         type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538985741, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290896319, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290896319, guid: c971fe79afea9e14ba5d9db11ca39014, type: 3}
+      propertyPath: m_ShowToolkit
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10175,20 +10179,20 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710424856}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 1.5, z: 8.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4, y: 1.4, z: 8.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!43 &2011970248
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16294
+  m_Name: pb_Mesh18690
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
