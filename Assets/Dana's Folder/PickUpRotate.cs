@@ -9,9 +9,11 @@ public class PickUpRotate : MonoBehaviour
     GameObject item;
     public Transform guide;
     public bool isRotatingObject = false;
+    public bool canPickUp = false;
     float rotationSpeed = 50.0f;
     bool canPickup = false;
     public GameObject hand;
+    RaycastHit hit;
 
     void Start()
     {
@@ -22,17 +24,19 @@ public class PickUpRotate : MonoBehaviour
     {
         if (item == null)
         {
-            RaycastHit hit;
+            
             if (Physics.Raycast(transform.position, transform.forward, out hit, 2))
             {
                 if (hit.collider.tag == "Pickupable")
                 {
                     hand.SetActive(true);
+                    canPickUp = true;
                 }
             }
             else
             {
                 hand.SetActive(false);
+                canPickUp = false;
             }
         }
         else
@@ -66,20 +70,21 @@ public class PickUpRotate : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
+        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
         
-        for (int i = 0; i < hitColliders.Length; i++)
-        {
-            if (hitColliders[i].tag == "Pickupable")
+       //for (int i = 0; i < hitColliders.Length; i++)
+        //{
+            //if (hitColliders[i].tag == "Pickupable")
+            if(canPickUp)
             {
-                item = hitColliders[i].gameObject;
+                item = hit.collider.gameObject;//hitColliders[i].gameObject;
                 item.GetComponent<Rigidbody>().useGravity = false;
                 item.GetComponent<Rigidbody>().isKinematic = true;
                 item.transform.position = guide.position;
                // item.transform.rotation = guide.rotation;
                 item.transform.parent = guide.transform;
             }
-        }
+       // }
         
     }
 
