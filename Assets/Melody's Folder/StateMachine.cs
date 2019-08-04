@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,17 +37,26 @@ public class StateMachine : MonoBehaviour
     #region States
     private IEnumerable WalkTowardsLastKnownPosition()
     {
-        bool positionReached = false;
-        bool playerSensed = false;
-        bool demonEyeOpened = false;
-        Debug.Log("Entering While loop");
+        bool headingTowards = true;
+       
+        //Debug.Log("Entering While loop");
         demon.SetDestination(demon.lastKnownPosition);
-        while (!positionReached && !playerSensed && !demonEyeOpened)
+        while (headingTowards)
         {
           //  Debug.Log("In WalkTowardsLastKnownPosition Loop");
             //until reached
             if(demon.isTargetPositionNear())
             {
+                if(demon.playerIsInAttackRange)
+                {
+                    state = Attack();
+                }
+                else
+                {
+                    state = LookFor();
+                }
+                //yes attack
+                //no wander close to 
                 //attack
                 //Take Dammage() th3en wait Tahe Damage Then wait...
                 state = DebugLogState("target position reached");
@@ -59,12 +69,31 @@ public class StateMachine : MonoBehaviour
         }
         Debug.Log("You fucked up");
     }
+
+    private IEnumerable LookFor()
+    {
+        bool lookingFor = true;
+        int t = 10;
+        while (lookingFor)
+        {
+            Debug.Log("Looking for");
+            if(demon.demonEyeIsOpen || demon.playerIsSensed)
+            {
+                state = WalkTowardsLastKnownPosition();
+            }
+
+
+
+            yield return null;
+        }
+    }
+
     private IEnumerable DebugLogState(string message)
     {
         while (true)
         {
             yield return new WaitForSeconds(1);
-            //Debug.Log(message);
+            Debug.Log(message);
 
 
         }
@@ -72,13 +101,49 @@ public class StateMachine : MonoBehaviour
 
     private IEnumerable Attack()
     {
-        yield return null;
+        Debug.Log("inside attack");
+        while (true)
+        {
+            yield return new WaitForSeconds(demon.attackDuration);
+            Debug.Log("attack");
+            if(!demon.playerIsInAttackRange)
+            {
+                state = WalkTowardsLastKnownPosition();
+            }
+        }
+
+
+        
+    }
+
+    private IEnumerable Wander()
+    {
+        
+        bool wander = true;
+        while (wander)//
+        {
+            if(demon.playerIsSensed)
+            {
+                state = WalkTowardsLastKnownPosition();
+            }
+            if(demon.demonEyeIsOpen)
+            {
+                WalkTowardsLastKnownPosition();
+            }
+
+            //set position solmething
+            Debug.Log("in wander");
+            yield return null;
+        }
+
+
+
     }
     #endregion
     #region Scenario Checks
-    
 
-  
+
+
     #endregion
 
 

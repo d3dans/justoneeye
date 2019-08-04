@@ -13,9 +13,12 @@ public class Demon : MonoBehaviour
     public float sensingRange = 5.0f;
     public float attackingRange = 2.5f;
     public float targetPositionRadius = 5.0f;
- 
+    
     StateMachine stateMachine;  
     public Vector3 lastKnownPosition { get; private set; }
+    public bool demonEyeIsOpen { get; private set; }
+    public bool playerIsSensed { get; private set; } 
+    public bool playerIsInAttackRange { get; private set; }
     //Demon Movement 
     [SerializeField]
     Transform _destination;
@@ -54,19 +57,28 @@ public class Demon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //get eye blinky script
+        demonEyeIsOpen = GameObject.FindGameObjectWithTag("Player").GetComponent<EyeBinky>().lefteyeOpen;
+        //idfk this just seems more oganized
+        playerIsSensed = OverlapSphereCheck(sensingRange);
+        playerIsInAttackRange = OverlapSphereCheck(attackingRange);
 
         //Debug.Log("Destination: " + _navMeshAgent.destination);
         //Debug.Log("Distance Remaining: " + _navMeshAgent.remainingDistance);
 
         //Debug.Log("State: " + stateMachine.strStateDebug);
+        if(demonEyeIsOpen || playerIsSensed)
+        {
+            UpdateLastKnownPosition();
+        }
         
     }
 
     private void FixedUpdate()
     {
-        
-    }
 
+    }
+    /*
     public bool isPlayerSensed()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, sensingRange);
@@ -79,17 +91,44 @@ public class Demon : MonoBehaviour
         }
         return false;
     }
-
+    */
     public bool isTargetPositionNear(float radius = 5.0f)
     {
         return (_navMeshAgent.remainingDistance < radius);     
     }
+
+   /* public bool isPlayerInAttackRange()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, attackingRange);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].gameObject.tag == "Player")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    */
     public void UpdateLastKnownPosition()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         lastKnownPosition = player.transform.position;
 
+    }
+
+    private bool OverlapSphereCheck(float Radius)
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, attackingRange);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].gameObject.tag == "Player")
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
