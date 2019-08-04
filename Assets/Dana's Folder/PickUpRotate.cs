@@ -8,16 +8,44 @@ public class PickUpRotate : MonoBehaviour
     //sometimes makes player v tall
     GameObject item;
     public Transform guide;
-    public bool isRotatingObject;
+    public bool isRotatingObject = false;
     float rotationSpeed = 50.0f;
-    
+    bool canPickup = false;
+    public GameObject hand;
+
+    void Start()
+    {
+        hand.SetActive(false);
+    }
+
     void Update()
     {
-       if(Input.GetMouseButtonDown(0))
+        if (item == null)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 2))
+            {
+                if (hit.collider.tag == "Pickupable")
+                {
+                    hand.SetActive(true);
+                }
+            }
+            else
+            {
+                hand.SetActive(false);
+            }
+        }
+        else
+        {
+            hand.SetActive(false);
+        }
+
+
+        if (Input.GetMouseButtonDown(0))
         {
             OnMouseDown();
         }
-       else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0))
         {
             OnMouseUp();
         }
@@ -38,7 +66,7 @@ public class PickUpRotate : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f);
         
         for (int i = 0; i < hitColliders.Length; i++)
         {
@@ -63,6 +91,7 @@ public class PickUpRotate : MonoBehaviour
             item.GetComponent<Rigidbody>().isKinematic = false;
             item.transform.parent = null;
             item.transform.position = guide.position;
+            item = null;
         }
     }
 }
