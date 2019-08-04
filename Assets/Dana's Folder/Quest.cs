@@ -52,10 +52,10 @@ public class Quest : MonoBehaviour
         escape3.SetActive(false);
         escape4.SetActive(false);
 
-        banish0.SetActive(true);
-        banish1.SetActive(false);
-        banish2.SetActive(false);
-        banish3.SetActive(false);
+        //banish0.SetActive(true);
+        //banish1.SetActive(false);
+       // banish2.SetActive(false);
+       // banish3.SetActive(false);
     }
 
     // Update is called once per frame
@@ -74,12 +74,12 @@ public class Quest : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     EscapeQuest(hit.collider.gameObject);
-                    BanishQuest(hit.collider.gameObject);
+                    //BanishQuest(hit.collider.gameObject);
                 }
             }            
         }
 
-        if (Physics.Raycast(CameraPivot.transform.position, CameraPivot.transform.forward, out demonhit, 10))
+        /*if (Physics.Raycast(CameraPivot.transform.position, CameraPivot.transform.forward, out demonhit, 10))
         {
             if (demoneye.activeSelf && !humaneye.activeSelf && demonhit.collider.gameObject.name == "DemonTextQuest")//change name later?
             {
@@ -105,7 +105,7 @@ public class Quest : MonoBehaviour
                 banishQuest = 4;
                 BanishQuest(null);
             }
-        }
+        }*/
 
     }
 
