@@ -8,7 +8,7 @@ using System;
 public class Demon : MonoBehaviour
 {
     public int attack = 20;
-    public int attackDuration = 20;
+    public int attackDuration = 5;
 
     public float sensingRange = 5.0f;
     public float attackingRange = 2.5f;
@@ -28,13 +28,20 @@ public class Demon : MonoBehaviour
     NavMeshAgent _navMeshAgent;
     //refrence to player
     GameObject player;
-    
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+
+    }
+
     void Start()
     {
         //movement
+
         player = GameObject.FindGameObjectWithTag("Player");
         lastKnownPosition = transform.position;
+
         _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
 
         if (_navMeshAgent == null)
@@ -94,9 +101,9 @@ public class Demon : MonoBehaviour
     */
     public bool isTargetPositionNear(float radius = 5.0f)
     {
-        Debug.Log("inside isTarget...  remaindist: " + _navMeshAgent.remainingDistance);
+        //Debug.Log("inside isTarget...  remaindist: " + _navMeshAgent.remainingDistance);
         return (_navMeshAgent.remainingDistance < radius);  
-        
+        //return true;
     }
 
    /* public bool isPlayerInAttackRange()
