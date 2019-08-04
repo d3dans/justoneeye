@@ -10,35 +10,35 @@ public class EyeBinky : MonoBehaviour
     public GameObject righteye;
     public GameObject openeyes;
     public GameObject closedeyes;
-    public bool lefteyeOpen;
     public bool righteyeOpen;
+    public bool lefteyeOpen;
 
     void Start()
     {
-        lefteyeOpen = lefteye.activeSelf;
-        righteyeOpen = righteye.activeSelf;
+        righteyeOpen = lefteye.activeSelf;
+        lefteyeOpen = righteye.activeSelf;
     }
     
     void Update()
     {
         if(Input.GetButtonDown("RightEye"))
         {
-            lefteye.SetActive(!lefteyeOpen);
-            lefteyeOpen = !lefteyeOpen;
+            lefteye.SetActive(!righteyeOpen);
+            righteyeOpen = !righteyeOpen;
         }
         else if (Input.GetButtonDown("LeftEye"))
         {
-            righteye.SetActive(!righteyeOpen);
-            righteyeOpen = !righteyeOpen;
+            righteye.SetActive(!lefteyeOpen);
+            lefteyeOpen = !lefteyeOpen;
         }
         
-        if(!lefteyeOpen && !righteyeOpen)//both eyes are "open" but no camera wb rendering
+        if(!righteyeOpen && !lefteyeOpen)//both eyes are "open" but no camera wb rendering
         {
             openeyes.SetActive(true);
         }
         else
         {
-            if (lefteyeOpen && righteyeOpen)//both eyes are shut
+            if (righteyeOpen && lefteyeOpen)//both eyes are shut
             {
                 closedeyes.SetActive(true);
             }
