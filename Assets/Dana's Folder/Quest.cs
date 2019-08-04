@@ -76,6 +76,16 @@ public class Quest : MonoBehaviour
                     EscapeQuest(hit.collider.gameObject);
                     //BanishQuest(hit.collider.gameObject);
                 }
+                if (escapeQuest == 3)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if(hit.collider.gameObject.name == "Gate")
+                        {
+                            Application.Quit();
+                        }
+                    }
+                }
             }            
         }
 
@@ -106,6 +116,8 @@ public class Quest : MonoBehaviour
                 BanishQuest(null);
             }
         }*/
+
+        
 
     }
 
