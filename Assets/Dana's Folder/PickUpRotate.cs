@@ -27,8 +27,6 @@ public class PickUpRotate : MonoBehaviour
             if (Input.GetButton("RotateObject"))
             {
                 isRotatingObject = true;
-                Debug.Log("trying to rotate");
-                //RotateObject();
                 item.transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * rotationSpeed);
             }
             else if (Input.GetButtonUp("RotateObject"))
@@ -36,12 +34,6 @@ public class PickUpRotate : MonoBehaviour
                 isRotatingObject = false;
             }
         }
-    }
-
-    void RotateObject()
-    {
-        Debug.Log("trying to rotate");
-       
     }
 
     private void OnMouseDown()
