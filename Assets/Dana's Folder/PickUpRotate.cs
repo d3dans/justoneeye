@@ -6,6 +6,7 @@ public class PickUpRotate : MonoBehaviour
 {
     public Transform guide;
     public GameObject hand;
+    public GameObject CameraPivot;
     public bool isRotatingObject = false;
     public bool canPickUp = false; 
     
@@ -38,12 +39,21 @@ public class PickUpRotate : MonoBehaviour
     {
         if (item == null)
         {            
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 2))
+            if (Physics.Raycast(CameraPivot.transform.position, CameraPivot.transform.forward, out hit, 2))
             {
                 if (hit.collider.tag == "Pickupable")
                 {
                     hand.SetActive(true);
                     canPickUp = true;
+                }
+                else if(hit.collider.gameObject.GetComponent<QuestItem>()!=null)
+                {
+                    hand.SetActive(true);
+                }
+                else
+                {
+                    hand.SetActive(false);
+                    canPickUp = false;
                 }
             }
             else
@@ -51,6 +61,7 @@ public class PickUpRotate : MonoBehaviour
                 hand.SetActive(false);
                 canPickUp = false;
             }
+
         }
         else
         {
