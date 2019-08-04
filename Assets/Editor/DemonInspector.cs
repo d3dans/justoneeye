@@ -32,6 +32,7 @@ public class DemonInspector : Editor
         Handles.color = Color.red;
         demon.attackingRange = Handles.RadiusHandle(Quaternion.identity, demon.transform.position, demon.attackingRange);
         Handles.color = Color.blue;
-        demon.targetPositionRadius = Handles.RadiusHandle(Quaternion.identity, demon.lastKnownPosition, demon.targetPositionRadius);
+        demon.targetPositionRadius = Handles.RadiusHandle(Quaternion.identity, demon.targetDestination, demon.targetPositionRadius);
+
     }
 }

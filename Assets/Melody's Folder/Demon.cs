@@ -16,12 +16,15 @@ public class Demon : MonoBehaviour
     
     StateMachine stateMachine;  
     public Vector3 lastKnownPosition { get; private set; }
+    
     public bool demonEyeIsOpen { get; private set; }
-    public bool playerIsSensed { get; private set; } 
+   
+    public bool playerIsSensed { get; private set; }
+   
     public bool playerIsInAttackRange { get; private set; }
+    public Vector3 targetDestination;
     //Demon Movement 
-    [SerializeField]
-    Transform _destination;
+
     NavMeshAgent _navMeshAgent;
     //refrence to player
     GameObject player;
@@ -31,14 +34,14 @@ public class Demon : MonoBehaviour
     {
         //movement
         player = GameObject.FindGameObjectWithTag("Player");
-
+        lastKnownPosition = transform.position;
         _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
 
         if (_navMeshAgent == null)
         {
             Debug.LogError("The nav mesh agent is not attached to " + gameObject.name);
         }
-       
+        
 
         stateMachine = gameObject.GetComponent<StateMachine>();
 
@@ -46,13 +49,7 @@ public class Demon : MonoBehaviour
        // debugText = GameObject.FindGameObjectWithTag("DemonDebugText").GetComponent<Text>();   
     }
     //this should not be public change when theres time
-    public void SetDestination(Vector3 target)
-    {
-        if (_destination != null)
-        {
-            _navMeshAgent.SetDestination(target);
-        }
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -60,14 +57,17 @@ public class Demon : MonoBehaviour
         //get eye blinky script
         demonEyeIsOpen = GameObject.FindGameObjectWithTag("Player").GetComponent<EyeBinky>().lefteyeOpen;
         //idfk this just seems more oganized
+       // Debug.Log("Demon Eye Is Open: " + demonEyeIsOpen);
         playerIsSensed = OverlapSphereCheck(sensingRange);
-        playerIsInAttackRange = OverlapSphereCheck(attackingRange);
 
+        playerIsInAttackRange = OverlapSphereCheck(attackingRange);
+       _navMeshAgent.destination = targetDestination;
+        
         //Debug.Log("Destination: " + _navMeshAgent.destination);
         //Debug.Log("Distance Remaining: " + _navMeshAgent.remainingDistance);
 
         //Debug.Log("State: " + stateMachine.strStateDebug);
-        if(demonEyeIsOpen || playerIsSensed)
+        if (demonEyeIsOpen || playerIsSensed)
         {
             UpdateLastKnownPosition();
         }
@@ -94,7 +94,9 @@ public class Demon : MonoBehaviour
     */
     public bool isTargetPositionNear(float radius = 5.0f)
     {
-        return (_navMeshAgent.remainingDistance < radius);     
+        Debug.Log("inside isTarget...  remaindist: " + _navMeshAgent.remainingDistance);
+        return (_navMeshAgent.remainingDistance < radius);  
+        
     }
 
    /* public bool isPlayerInAttackRange()
@@ -114,7 +116,7 @@ public class Demon : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        lastKnownPosition = player.transform.position;
+        targetDestination = player.transform.position;
 
     }
 
@@ -129,6 +131,10 @@ public class Demon : MonoBehaviour
             }
         }
         return false;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(targetDestination, targetPositionRadius);
     }
 
 }

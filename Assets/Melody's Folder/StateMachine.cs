@@ -15,7 +15,7 @@ public class StateMachine : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         demon = gameObject.GetComponent<Demon>();
-        state = WalkTowardsLastKnownPosition();
+        state = LookFor();
         //Debug.Log("Starting state machine");
         StartCoroutine(RunStateMachine());
     }
@@ -39,27 +39,27 @@ public class StateMachine : MonoBehaviour
     {
         bool headingTowards = true;
        
-        //Debug.Log("Entering While loop");
-        demon.SetDestination(demon.lastKnownPosition);
+        //Debug.Log("Entering While loop WalkTowards...");
+       
         while (headingTowards)
         {
-          //  Debug.Log("In WalkTowardsLastKnownPosition Loop");
+            //demon.SetDestination(demon.lastKnownPosition);
+           Debug.Log("WalkingTowards");
             //until reached
-            if(demon.isTargetPositionNear())
+            if (demon.isTargetPositionNear())
             {
-                if(demon.playerIsInAttackRange)
+             //   Debug.Log("Target Position is near");
+                headingTowards = false;
+                if (demon.playerIsInAttackRange)
                 {
+
+               //     Debug.Log("player in attack range");
                     state = Attack();
                 }
                 else
                 {
                     state = LookFor();
                 }
-                //yes attack
-                //no wander close to 
-                //attack
-                //Take Dammage() th3en wait Tahe Damage Then wait...
-                state = DebugLogState("target position reached");
             }
             
 
@@ -72,20 +72,14 @@ public class StateMachine : MonoBehaviour
 
     private IEnumerable LookFor()
     {
-        bool lookingFor = true;
         int t = 10;
-        while (lookingFor)
+        while (demon.demonEyeIsOpen || demon.playerIsSensed)
         {
             Debug.Log("Looking for");
-            if(demon.demonEyeIsOpen || demon.playerIsSensed)
-            {
-                state = WalkTowardsLastKnownPosition();
-            }
-
-
-
+            
             yield return null;
         }
+        state = WalkTowardsLastKnownPosition();
     }
 
     private IEnumerable DebugLogState(string message)
