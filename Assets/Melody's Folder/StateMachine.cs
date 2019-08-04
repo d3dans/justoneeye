@@ -17,7 +17,7 @@ public class StateMachine : MonoBehaviour
         demon = gameObject.GetComponent<Demon>();
         state = LookFor();
         //Debug.Log("Starting state machine");
-        //StartCoroutine(RunStateMachine());
+        StartCoroutine(RunStateMachine());
     }
 
     public IEnumerator RunStateMachine()
@@ -74,6 +74,7 @@ public class StateMachine : MonoBehaviour
         }
         Debug.Log("Out of look for while loop");
         state = WalkTowardsLastKnownPosition();
+        yield return null;
     }
 
     private IEnumerable DebugLogState(string message)

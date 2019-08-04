@@ -68,6 +68,7 @@ public class Demon : MonoBehaviour
         playerIsSensed = OverlapSphereCheck(sensingRange);
 
         playerIsInAttackRange = OverlapSphereCheck(attackingRange);
+        Debug.Log("Player is in attack range: " + playerIsInAttackRange);
        _navMeshAgent.destination = targetDestination;
         
         //Debug.Log("Destination: " + _navMeshAgent.destination);
