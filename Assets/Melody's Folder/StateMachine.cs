@@ -23,6 +23,7 @@ public class StateMachine : MonoBehaviour
     {
         while(state != null)
         {
+            Debug.Log("state machine running");
             //Debug.Log("State Machine Running");
             foreach (var c in state)
             {
@@ -39,14 +40,18 @@ public class StateMachine : MonoBehaviour
         bool playerSensed = false;
         bool demonEyeOpened = false;
         Debug.Log("Entering While loop");
+        demon.SetDestination(demon.lastKnownPosition);
         while (!positionReached && !playerSensed && !demonEyeOpened)
         {
-            Debug.Log("In WalkTowardsLastKnownPosition Loop");
+          //  Debug.Log("In WalkTowardsLastKnownPosition Loop");
             //until reached
-            if(demon.isTargetPositionReached(demon.lastKnownPosition))
+            if(demon.isTargetPositionNear())
             {
+                //attack
+                //Take Dammage() th3en wait Tahe Damage Then wait...
                 state = DebugLogState("target position reached");
             }
+            
 
             yield return null;
             // && !demon.isPlayerSensed() && !demonEyeOpened
@@ -63,6 +68,11 @@ public class StateMachine : MonoBehaviour
 
 
         }
+    }
+
+    private IEnumerable Attack()
+    {
+        yield return null;
     }
     #endregion
     #region Scenario Checks

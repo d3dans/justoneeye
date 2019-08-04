@@ -2,33 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
+using System;
 
 public class Demon : MonoBehaviour
 {
-    Text debugText;
-    public bool showDebugLogState;
+    public int attack = 20;
+    public int attackDuration = 20;
+
     public float sensingRange = 5.0f;
     public float attackingRange = 2.5f;
     public float targetPositionRadius = 5.0f;
+ 
     StateMachine stateMachine;  
     public Vector3 lastKnownPosition { get; private set; }
+    //Demon Movement 
+    [SerializeField]
+    Transform _destination;
+    NavMeshAgent _navMeshAgent;
+    //refrence to player
+    GameObject player;
     
     // Start is called before the first frame update
     void Start()
     {
+        //movement
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+
+        if (_navMeshAgent == null)
+        {
+            Debug.LogError("The nav mesh agent is not attached to " + gameObject.name);
+        }
+       
+
         stateMachine = gameObject.GetComponent<StateMachine>();
 
+
        // debugText = GameObject.FindGameObjectWithTag("DemonDebugText").GetComponent<Text>();   
+    }
+    //this should not be public change when theres time
+    public void SetDestination(Vector3 target)
+    {
+        if (_destination != null)
+        {
+            _navMeshAgent.SetDestination(target);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (showDebugLogState)
-        {
-            Debug.Log("State: " + stateMachine.strStateDebug);
-        }
+        //Debug.Log("Destination: " + _navMeshAgent.destination);
+        //Debug.Log("Distance Remaining: " + _navMeshAgent.remainingDistance);
+
+        //Debug.Log("State: " + stateMachine.strStateDebug);
+        
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     public bool isPlayerSensed()
@@ -44,12 +80,16 @@ public class Demon : MonoBehaviour
         return false;
     }
 
-    public bool isTargetPositionReached(Vector3 p)
+    public bool isTargetPositionNear(float radius = 5.0f)
     {
-        if (Vector3.Distance(p, transform.position) < 0.01)
-        {
-            return true;
-        }
-        return false;
+        return (_navMeshAgent.remainingDistance < radius);     
     }
+    public void UpdateLastKnownPosition()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        lastKnownPosition = player.transform.position;
+
+    }
+
 }
