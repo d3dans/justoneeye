@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class PickUpRotate : MonoBehaviour
 {
-    //object has to be tagged with Pickupable to work & gravity = true
-    //sometimes makes player v tall
-    GameObject item;
     public Transform guide;
+    public GameObject hand;
     public bool isRotatingObject = false;
-    public bool canPickUp = false;
+    public bool canPickUp = false; 
+    
+    RaycastHit hit;    
+    GameObject item;
+    float liftStrength = 5f;
     float rotationSpeed = 50.0f;
     bool canPickup = false;
-    public GameObject hand;
-    RaycastHit hit;
 
     void Start()
     {
         hand.SetActive(false);
     }
 
+    private void FixedUpdate()
+    {
+        if (canPickUp && item != null)
+        {
+            Vector3 liftVector = (guide.position - item.transform.position) / Time.fixedDeltaTime;
+
+            if (liftVector.sqrMagnitude > liftStrength * liftStrength)
+            {
+                liftVector = liftVector.normalized * liftStrength;
+            }
+            item.GetComponent<Rigidbody>().velocity = liftVector;
+        }
+    }
+
     void Update()
     {
         if (item == null)
-        {
-            
+        {            
             if (Physics.Raycast(transform.position, transform.forward, out hit, 2))
             {
                 if (hit.collider.tag == "Pickupable")
@@ -44,15 +57,14 @@ public class PickUpRotate : MonoBehaviour
             hand.SetActive(false);
         }
 
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             OnMouseDown();
         }
         else if (Input.GetMouseButtonUp(0))
         {
             OnMouseUp();
-        }
+        }        
 
         if (item != null)
         {
@@ -79,10 +91,12 @@ public class PickUpRotate : MonoBehaviour
             {
                 item = hit.collider.gameObject;//hitColliders[i].gameObject;
                 item.GetComponent<Rigidbody>().useGravity = false;
-                item.GetComponent<Rigidbody>().isKinematic = true;
-                item.transform.position = guide.position;
-               // item.transform.rotation = guide.rotation;
-                item.transform.parent = guide.transform;
+                item.GetComponent<Rigidbody>().isKinematic = false;
+                item.GetComponent<Rigidbody>().freezeRotation = true;
+            //item.transform.position = guide.position;
+
+            // item.transform.rotation = guide.rotation;
+            //item.transform.parent = guide.transform;
             }
        // }
         
@@ -94,8 +108,9 @@ public class PickUpRotate : MonoBehaviour
         {
             item.GetComponent<Rigidbody>().useGravity = true;
             item.GetComponent<Rigidbody>().isKinematic = false;
-            item.transform.parent = null;
-            item.transform.position = guide.position;
+            //item.transform.parent = null;
+            // item.transform.position = guide.position;
+            item.GetComponent<Rigidbody>().freezeRotation = false;
             item = null;
         }
     }
