@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class flashlight : MonoBehaviour
 {
-    public bool flashlighton = false;
+    public bool flashlightOn = false;
     public GameObject flashlightObject;
     void Start()
     {
@@ -17,15 +17,15 @@ public class flashlight : MonoBehaviour
         if(Input.GetButtonDown("Flashlight"))
         {
             Debug.Log("flashlight");
-            if(flashlighton)
+            if(flashlightOn)
             {
                 flashlightObject.SetActive(false);
-                flashlighton = false;
+                flashlightOn = false;
             }
             else
             {
                 flashlightObject.SetActive(true);
-                flashlighton = true;
+                flashlightOn = true;
             }
         }
     }
