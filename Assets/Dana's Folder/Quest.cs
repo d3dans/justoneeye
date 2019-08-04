@@ -81,7 +81,7 @@ public class Quest : MonoBehaviour
 
         if (Physics.Raycast(CameraPivot.transform.position, CameraPivot.transform.forward, out demonhit, 10))
         {
-            if (demoneye.activeSelf && !humaneye.activeSelf && demonhit.collider.gameObject.name == "LatinText")//change name later?
+            if (demoneye.activeSelf && !humaneye.activeSelf && demonhit.collider.gameObject.name == "DemonTextQuest")//change name later?
             {
                 Debug.Log("demon latin");
                 banishQuest = 1;
