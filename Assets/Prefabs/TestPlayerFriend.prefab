@@ -3397,6 +3397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Demon: {fileID: 0}
   CameraPivot: {fileID: 3679853482357942369}
+  MenuCanvas: {fileID: 1653710431}
   escape0: {fileID: 1583046735}
   escape1: {fileID: 1893001178}
   escape2: {fileID: 671845781}
