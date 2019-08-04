@@ -17,7 +17,7 @@ public class StateMachine : MonoBehaviour
         demon = gameObject.GetComponent<Demon>();
         state = LookFor();
         //Debug.Log("Starting state machine");
-        StartCoroutine(RunStateMachine());
+        //StartCoroutine(RunStateMachine());
     }
 
     public IEnumerator RunStateMachine()
@@ -37,35 +37,28 @@ public class StateMachine : MonoBehaviour
     #region States
     private IEnumerable WalkTowardsLastKnownPosition()
     {
-        bool headingTowards = true;
+        
        
-        //Debug.Log("Entering While loop WalkTowards...");
+        Debug.Log("Entering While loop WalkTowards...");
        
-        while (headingTowards)
+        while (!demon.isTargetPositionNear())
         {
             //demon.SetDestination(demon.lastKnownPosition);
            Debug.Log("WalkingTowards");
-            //until reached
-            if (demon.isTargetPositionNear())
-            {
-             //   Debug.Log("Target Position is near");
-                headingTowards = false;
-                if (demon.playerIsInAttackRange)
-                {
-
-               //     Debug.Log("player in attack range");
-                    state = Attack();
-                }
-                else
-                {
-                    state = LookFor();
-                }
-            }
-            
-
             yield return null;
             // && !demon.isPlayerSensed() && !demonEyeOpened
             //or sense player
+        }
+        if (demon.playerIsInAttackRange)
+        {
+
+            //     Debug.Log("player in attack range");
+            state = Attack();
+
+        }
+        else
+        {
+            state = LookFor();
         }
         Debug.Log("You fucked up");
     }
@@ -73,12 +66,13 @@ public class StateMachine : MonoBehaviour
     private IEnumerable LookFor()
     {
         int t = 10;
-        while (demon.demonEyeIsOpen || demon.playerIsSensed)
+        while (!demon.demonEyeIsOpen/* && !demon.playerIsSensed*/)
         {
             Debug.Log("Looking for");
             
             yield return null;
         }
+        Debug.Log("Out of look for while loop");
         state = WalkTowardsLastKnownPosition();
     }
 
@@ -96,18 +90,15 @@ public class StateMachine : MonoBehaviour
     private IEnumerable Attack()
     {
         Debug.Log("inside attack");
-        while (true)
+        while (demon.playerIsInAttackRange)
         {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Respawn>().TakeDamage(demon.attack);
             yield return new WaitForSeconds(demon.attackDuration);
             Debug.Log("attack");
-            if(!demon.playerIsInAttackRange)
-            {
-                state = WalkTowardsLastKnownPosition();
-            }
+            
         }
-
-
         
+        state = WalkTowardsLastKnownPosition();
     }
 
     private IEnumerable Wander()
